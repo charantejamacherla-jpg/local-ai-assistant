@@ -108,16 +108,19 @@ for idx, message in enumerate(test_messages, 1):
     # Urgency (score)
     urgency_answer = answers["urgency"]
     urgency_score = urgency_answer["score"]
-    # CRITICAL: Index the legend using the score value as string key
+    # FIXED: Use probabilities to find the winning category, not int(score)
     urgency_legend = urgency_answer["legend"]
-    urgency_label = urgency_legend[str(int(urgency_score))]  # Convert score to int, then to string key
+    urgency_probabilities = urgency_answer["probabilities"]
+    # Find the key with the highest probability
+    winning_key = max(urgency_probabilities, key=urgency_probabilities.get)
+    urgency_label = urgency_legend[winning_key]
     
     print(f"\n  Urgency:")
     print(f"    type: {urgency_answer['type']}")
     print(f"    score: {urgency_score}")
     print(f"    legend: {urgency_legend}")
-    print(f"    label (from legend['{int(urgency_score)}']): {urgency_label}")
-    print(f"    probabilities: {urgency_answer['probabilities']}")
+    print(f"    probabilities: {urgency_probabilities}")
+    print(f"    label (from highest probability '{winning_key}'): {urgency_label}")
     print(f"    confidence: {urgency_answer['confidence']:.4f}")
     print(f"    answer_confidence: {urgency_answer['answer_confidence']:.4f}")
     
