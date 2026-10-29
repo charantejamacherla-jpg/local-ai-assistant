@@ -216,3 +216,19 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Laya development backups
+*.phase*-backup
+*.phase*-working
+*.phase*-tested
+*.phase*-before-fix
+*.retriever-v1
+
+# Local scratch files
+phase2_code.txt
+/Dict[str
+/str
+
+# Accidental scratch filename
+/Dict[[]str*
